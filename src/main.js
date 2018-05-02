@@ -5,6 +5,7 @@ import App from './App'
 import router from './router'
 import Vuetify from 'vuetify'
 import 'vuetify/dist/vuetify.min.css'
+import InterceptorApi from '@/services/Interceptor.service'
 
 Vue.use(Vuetify, { theme: {
   primary: '#ee44aa',
@@ -15,6 +16,8 @@ Vue.use(Vuetify, { theme: {
   success: '#4CAF50',
   warning: '#FFC107'
 }})
+
+Vue.http.interceptors.push(InterceptorApi)
 
 Vue.config.productionTip = false
 
