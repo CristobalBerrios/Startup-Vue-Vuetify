@@ -28,8 +28,8 @@
       <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
       <v-toolbar-title v-text="title"></v-toolbar-title>
       <v-spacer></v-spacer>
-      <v-btn icon @click.stop="rightDrawer = !rightDrawer">
-        <v-icon>menu</v-icon>
+      <v-btn @click="logout" flat>Cerrar Sesion
+        <v-icon dark right>exit_to_app</v-icon>
       </v-btn>
     </v-toolbar>
     <v-content>
@@ -39,6 +39,7 @@
 </template>
 
 <script>
+import CredentialsService from '@/services/Credentials.service'
 export default {
   data () {
     return {
@@ -51,7 +52,15 @@ export default {
       miniVariant: false,
       right: true,
       rightDrawer: false,
-      title: 'Corredora de Propiedades'
+      title: 'Corredora de Propiedades',
+      credenciales: new CredentialsService()
+    }
+  },
+  methods: {
+    logout () {
+      let vm = this
+      vm.credenciales.clearCredentials()
+      vm.$router.push('/login')
     }
   },
   name: 'App'
